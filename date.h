@@ -87,26 +87,26 @@ public:
     static void dispalyYearCalendarHeader(short year);
     static void displayYearCalendar(short year);
 
-    
-
-
-
 
     void printYearDetails();
     void printMonthDetails();
     void displayMonthCalendar(short spacesDelimiterLength = 7);
     void displayYearCalendar();
 
+    static bool isFirstDateBeforeSecondDate(const Date &firstDate, const Date &secondDate);
+    bool isBeforeDate(const Date &secondDate);
+
+    static bool isFirstDateAfterSecondDate(const Date& firstDate , const Date& secondDate);
+    bool isAfterDate(const Date& secondDate);
+
+    static bool isEqualDates(const Date &firstDate, const Date &secondDate);
+    bool isEqual(const Date &secondDate);
+
+    static bool isDateInRange(const Date& subDate , const Date& startRange , const Date& endRange , bool inclusive = true);
+    bool isDateInRange(const Date& startRange , const Date& endRange , bool inclusive = true);
 
 
 
 
-
-    void printDateDetails()
-    {
-        cout << "Day      : " << day   << endl;
-        cout << "Month    : " << month << endl;
-        cout << "Year     : " << year  << endl;
-    }
 
 };

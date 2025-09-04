@@ -355,3 +355,51 @@ void Date::displayYearCalendar()
 {
     displayYearCalendar(this->year);
 }
+bool Date::isDateInRange(const Date& subDate , const Date& startRange , const Date& endRange , bool inclusive)
+{
+    if(inclusive)
+    {
+        if(isEqualDates(subDate , startRange) || isEqualDates(subDate , endRange))
+            return true;
+    }
+    return isFirstDateAfterSecondDate(subDate , startRange) &&  isFirstDateBeforeSecondDate(subDate , endRange);
+}
+bool Date::isDateInRange(const Date& startRange , const Date& endRange , bool inclusive)
+{
+    return isDateInRange(*this , startRange , endRange , inclusive);
+}
+
+bool Date::isFirstDateBeforeSecondDate(const Date &firstDate, const Date &secondDate)
+{
+    if (firstDate.year < secondDate.year)
+        return true;
+    if (firstDate.year > secondDate.year)
+        return false;
+
+    if (firstDate.month < secondDate.month)
+        return true;
+    if (firstDate.month > secondDate.month)
+        return false;
+
+    return firstDate.day < secondDate.day;
+}
+bool Date::isBeforeDate(const Date &secondDate)
+{
+    return isFirstDateBeforeSecondDate(*this , secondDate);
+}
+bool Date::isFirstDateAfterSecondDate(const Date& firstDate , const Date& secondDate)
+{
+    return !isFirstDateBeforeSecondDate(firstDate , secondDate) && !isEqualDates(firstDate , secondDate);
+}
+bool Date::isAfterDate(const Date& secondDate)
+{
+    return isFirstDateAfterSecondDate(*this , secondDate);
+}
+bool Date::isEqualDates(const Date &firstDate, const Date &secondDate)
+{
+    return (firstDate.year == secondDate.year) && (firstDate.month == secondDate.month) && (firstDate.day == secondDate.day);
+}
+bool Date::isEqual(const Date &secondDate)
+{
+    return isEqualDates(*this , secondDate);
+}
